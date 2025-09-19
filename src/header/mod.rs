@@ -64,7 +64,7 @@ use crate::{
     point::Format, raw, utils::FromLasStr, Bounds, Error, GpsTimeType, Point, Result, Transform,
     Vector, Version, Vlr,
 };
-use chrono::{Datelike, NaiveDate, Utc};
+use chrono::{Datelike, NaiveDate, Utc, Local};
 use std::{
     cmp::Ordering,
     collections::HashMap,
@@ -763,7 +763,7 @@ impl Default for Header {
     fn default() -> Header {
         Header {
             bounds: Default::default(),
-            date: Some(Utc::now().date_naive()),
+            date: Some(Local::now().date_naive()),
             evlrs: Vec::new(),
             file_source_id: 0,
             generating_software: format!("las-rs {}", env!("CARGO_PKG_VERSION")),
